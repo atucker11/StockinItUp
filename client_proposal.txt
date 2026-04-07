@@ -1,0 +1,32 @@
+Hi Tony,
+
+Thanks for the detailed breakdown. I can build this in Python as a modular Discord bot designed for a private server first and structured so premium providers can be added later without rewriting the whole project.
+
+Phase 1 would focus on free or freemium sources that are legally accessible and suitable for a working MVP:
+- market and company news ingestion
+- historical price data and return calculations
+- trending ticker detection from incoming article flow
+- sentiment counters with bullish, bearish and neutral classification
+- agreement scoring with warning labels for weakly supported claims
+- slash commands for stock lookup, sentiment, compare and watchlist
+- caching, rate limiting foundations, logging and secure env handling
+
+Recommended stack:
+- Python
+- discord.py slash commands
+- aiohttp
+- SQLite for watchlists and light persistence
+- Railway or Render deployment
+
+How I would handle the main logic:
+- Trending tickers: extract related symbols from incoming articles, deduplicate duplicates, then weight mention counts by recency and source quality
+- Agreement score: group similar claim headlines, count unique publishers, apply trust weighting, then add warning labels if support is thin or rumor-based
+- Sentiment: use a lightweight local classifier first to keep cost near zero, then optionally upgrade later if stronger ML or LLM analysis is wanted
+- Recommendation output: generate both conservative and bold modes, each with reasons, confidence score and citations
+
+Phase 2 can then add premium providers like Bloomberg, Morningstar or Seeking Alpha once the required subscriptions or licenses are available.
+
+I also prepared the codebase structure in a modular way so it is easy to extend, deploy and maintain.
+
+Best,
+Benny
